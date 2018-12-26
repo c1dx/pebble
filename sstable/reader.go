@@ -358,7 +358,7 @@ func (r *Reader) Close() error {
 	return nil
 }
 
-func (r *Reader) get(key []byte, o *db.IterOptions) (value []byte, err error) {
+func (r *Reader) get(key []byte) (value []byte, err error) {
 	if r.err != nil {
 		return nil, r.err
 	}
@@ -405,7 +405,7 @@ func (r *Reader) NewIter(o *db.IterOptions) *Iterator {
 // NewRangeDelIter returns an internal iterator for the contents of the
 // range-del block for the table. Returns nil if the table does not contain any
 // range deletions.
-func (r *Reader) NewRangeDelIter(o *db.IterOptions) *blockIter {
+func (r *Reader) NewRangeDelIter() *blockIter {
 	if r.rangeDel.bh.length == 0 {
 		return nil
 	}
